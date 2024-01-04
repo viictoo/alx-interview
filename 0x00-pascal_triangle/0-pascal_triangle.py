@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" pascals never ending tree ^ """
+"""pascals never ending tree"""
+
 
 def pascal_triangle(n):
     """this method draws pascals triangle given an integer n"""
@@ -18,4 +19,3 @@ def pascal_triangle(n):
             arr.append(val)
         _list.append(arr)
     return _list
-
