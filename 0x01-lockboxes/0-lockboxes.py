@@ -21,8 +21,8 @@ def canUnlockAll(boxes):
 
     dfs(0)
 
-    # return all(visited)
-    return False
+    return all(visited)
+    # return False
 
 if __name__=="__main__":
     boxes = [[1], [2], [3], [4], []]
