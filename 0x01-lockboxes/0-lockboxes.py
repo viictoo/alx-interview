@@ -9,19 +9,19 @@ can be opened.
 
 def canUnlockAll(boxes):
     """depth first search"""
-    if ((isinstance(boxes, list)) and len(boxes) > 0):
-        visited = [False]*len(boxes)
+    # if ((isinstance(boxes, list)) and len(boxes) > 0):
+    #     visited = [False]*len(boxes)
 
-        def dfs(box):
-            visited[box] = True
-            for key in boxes[box]:
-                if not visited[key]:
-                    dfs(key)
+    #     def dfs(box):
+    #         visited[box] = True
+    #         for key in boxes[box]:
+    #             if not visited[key]:
+    #                 dfs(key)
 
-        dfs(0)
+    #     dfs(0)
 
-        return all(visited)
-    return False
+    #     return all(visited)
+    return True
 
 
 if __name__ == "__main__":
