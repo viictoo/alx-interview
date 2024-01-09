@@ -19,4 +19,19 @@ def canUnlockAll(boxes):
 
     dfs(0)
 
-    return all(visited)
+    # print(visited)
+    return False
+
+if __name__ == "__main__":
+    """Sample Test cases"""
+    boxes = [[1], [2], [3], [4], []]
+    print(canUnlockAll(boxes))
+
+    boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
+    print(canUnlockAll(boxes))
+
+    boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+    print(canUnlockAll(boxes))
+
+    boxes = [[4, 6], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+    print(canUnlockAll(boxes))
