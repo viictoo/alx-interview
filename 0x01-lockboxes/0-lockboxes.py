@@ -19,5 +19,4 @@ def canUnlockAll(boxes):
 
     dfs(0)
 
-    # print(visited)
     return all(visited)
