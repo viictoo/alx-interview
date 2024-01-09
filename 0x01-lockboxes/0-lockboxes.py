@@ -9,6 +9,8 @@ can be opened.
 
 def canUnlockAll(boxes):
     """depth first search"""
+    if (type(boxes) != list or len(boxes) == 0):
+        return False
     visited = [False]*len(boxes)
 
     def dfs(box):
@@ -19,4 +21,15 @@ def canUnlockAll(boxes):
 
     dfs(0)
 
-    return all(visited)
+    # return all(visited)
+    return False
+
+if __name__=="__main__":
+    boxes = [[1], [2], [3], [4], []]
+    print(canUnlockAll(boxes))
+
+    boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
+    print(canUnlockAll(boxes))
+
+    boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+    print(canUnlockAll(boxes))
