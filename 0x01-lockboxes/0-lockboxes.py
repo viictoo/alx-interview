@@ -79,7 +79,7 @@ def canUnlockAll(boxes):
     if not all(i in unloced_keys for i in range(boxes_len)):
         return (False)
 
-    return (True)
+    return (False)
 
 
 if __name__ == "__main__":
