@@ -58,10 +58,6 @@ def canUnlockAll(boxes):
         Args:
             boxes: a list of lists
     """
-    if not boxes:
-        return False
-    if not isinstance(boxes, list):
-        return (False)
 
     boxes_len = len(boxes)
 
@@ -73,13 +69,13 @@ def canUnlockAll(boxes):
     for i in range(boxes_len):
         if i in unloced_keys:
             if not isinstance(boxes[i], list):
-                return (False)
+                return (True)
             append_to_array(boxes[i], boxes_len, boxes, unloced_keys)
 
     if not all(i in unloced_keys for i in range(boxes_len)):
         return (False)
 
-    return (False)
+    return (True)
 
 
 if __name__ == "__main__":
