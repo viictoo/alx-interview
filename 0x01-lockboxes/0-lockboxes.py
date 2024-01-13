@@ -7,71 +7,37 @@ can be opened.
 """
 
 
+# Passes All Checks
 # def canUnlockAll(boxes):
-#     """depth first search"""
-#     if ((isinstance(boxes, list)) and len(boxes) > 0):
-#         visited = [False]*len(boxes)
-
-#         def dfs(box):
-#             visited[box] = True
-#             for key in boxes[box]:
-#                 if key == 0:
-#                     visited[box] = True
-#                 if not visited[key]:
-#                     dfs(key)
-
-#         dfs(0)
-
-#         return all(visited)
-#     return False
-
-# def canUnlockAll(box, visited):
-#     visited = [False]*len(boxes)
-#     for key in boxes[box]:
-#         if not visited[key]:
-#             canUnlockAll(key, visited)
-#     return all(visited)
-
-# def canUnlockAll(boxes):
-#    """Depth-first search version of the function"""
-#    visited = {0: True}
-#    stack = [0]
-#    while stack:
-#        idx = stack.pop()
-#        for key in boxes[idx]:
-#            if key not in visited and key < len(boxes):
-#                visited[key] = True
-#                stack.append(key)
-#    return len(visited) == len(boxes)
+#     """Depth-first search version"""
+#     visited = {0: True}
+#     stack = [0]
+#     while stack:
+#         count = 0
+#         idx = stack.pop()
+#         for key in boxes[idx]:
+#             if key not in visited and key < len(boxes):
+#                 visited[key] = True
+#                 stack.append(key)
+#     print(len(visited))
+#     return len(visited) == len(boxes)
 
 def canUnlockAll(boxes):
-    """Depth-first search version of the function"""
-    visited = {0: True}
-    stack = [0]
-    while stack:
-        idx = stack.pop()
-        for key in boxes[idx]:
-            if key not in visited and key < len(boxes):
-                visited[key] = True
-                stack.append(key)
-    return len(visited) == len(boxes)
+    """brute force through each box"""
+    if not boxes:
+        return False
+    size, visited, idx = len(boxes), {}, 0
 
-# def canUnlockAll(boxes):
-#     """brute force through each box"""
-#     if not boxes:
-#         return False
-#     size, visited, idx = len(boxes), {}, 0
-
-#     for box in boxes:
-#         if len(box) == 0 or idx == 0:
-#             visited[idx] = -1
-#         for key in box:
-#             if key < size and key != idx:
-#                 visited[key] = key
-#         if len(visited) == size:
-#             return True
-#         idx += 1
-#     return False
+    for box in boxes:
+        if len(box) == 0 or idx == 0:
+            visited[idx] = -1
+        for key in box:
+            if key < size and key != idx:
+                visited[key] = key
+        if len(visited) == size:
+            return True
+        idx += 1
+    return False
 
 
 if __name__ == "__main__":
