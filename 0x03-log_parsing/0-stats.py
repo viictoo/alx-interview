@@ -17,8 +17,8 @@ def print_output(stats, size):
     print(f"File size: {size}")
 
     for i in sorted(stats):
-        if stats[i]:
-            print(f"{i}: {stats[i]}")
+        # if stats[i]:
+        print(f"{i}: {stats[i]}")
 
 
 if __name__ == "__main__":
