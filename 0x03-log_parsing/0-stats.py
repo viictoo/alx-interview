@@ -1,59 +1,48 @@
 #!/usr/bin/python3
-"""a script that reads stdin line by line and computes metrics:
-
-    Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
-    <status code> <file size>
-    Each 10 lines and after a keyboard interruption
-    (CTRL + C), prints those statistics since the beginning: """
+"""script that reads stdin line by line and computes metrics"""
 import sys
 
 
-size = 0
-# Initialized an empty dict to store the count of status codes
-status_codes = {}
-valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
-# var number of lines processed
-count = 0
-
-
-def print_status_code():
-    """prints statistics since the beginning of Each 10 lines
+def print_output(stats, size):
     """
-    print("File size:", size)
-    for key in sorted(status_codes):
-        print(key + ":", status_codes[key])
+    The function `print_output` prints the file size and the statistics in
+    a formatted manner.
+
+    :param stats: A dictionary containing statistics about a file. The keys
+    of the dictionary represent the type of statistic and the values represent
+    the corresponding count of that statistic
+    :param size: The `size` parameter represents the file size. It is a value
+    that indicates the size of a file in bytes
+    """
+    print(f"File size: {size}")
+
+    for i in sorted(stats):
+        if stats[i]:
+            print(f"{i}: {stats[i]}")
+
 
 if __name__ == "__main__":
+    count = 0
+    stats = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    size = 0
+
     try:
         for line in sys.stdin:
-            if count == 10:
-                print_status_code()
-                count = 1
-            else:
-                count += 1
-
-            elements = line.split()
+            count += 1
             try:
-                size += int(elements[-1])
-            except (IndexError, ValueError):
-                pass
-            try:
-                # Get second-to-last element as the <status_code>
-                status_code = elements[-2]
-                if status_code in valid_codes:
-                    if status_code not in status_codes:
-                        # If <status_code> is not in status_codes dict,
-                        # add it as a new key, count=1
-                        status_codes[status_code] = 1
-                    else:
-                        # If <status_code> is already in status_codes dict,
-                        # increment its count
-                        status_codes[status_code] += 1
-            except IndexError:
-                # Ignore IndexError if the element doesn't exist
-                pass
-        print_status_code()
+                parts = line.split(" ")
+                if len(parts) < 4:
+                    continue
+                code = int(parts[-2])
+                file_size = int(parts[-1])
+            except(IndexError, ValueError):
+                continue
+            size += file_size
+            stats[code] += 1
 
+            if count % 10 == 0:
+                print_output(stats, size)
+        print_output(stats, size)
     except KeyboardInterrupt:
-        print_status_code()
-        raise
+        print_output(stats, size)
+        sys.exit()
