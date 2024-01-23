@@ -35,7 +35,7 @@ if __name__ == "__main__":
                     continue
                 code = int(parts[-2])
                 file_size = int(parts[-1])
-            except(IndexError, ValueError):
+            except (IndexError, ValueError):
                 continue
             size += file_size
             stats[code] += 1
