@@ -23,6 +23,7 @@ def print_output(stats, size):
 
 if __name__ == "__main__":
     count = 0
+    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
     stats = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
     size = 0
 
@@ -33,18 +34,15 @@ if __name__ == "__main__":
                 parts = line.split(" ")
                 code = int(parts[-2])
                 file_size = int(parts[-1])
-            except (IndexError, ValueError):
+            except (IndexError):
                 continue
             size += file_size
-            if code not in stats:
-                # If <status_code> is not in status_codes dict,
-                # add it as a new key, count=1
-                stats[code] = 1
-            else:
-                # If <status_code> is already in status_codes dict,
-                # increment its count
-                stats[code] += 1
-            # stats[code] += 1
+            if str(code) in valid_codes:
+                if code not in stats:
+                    stats[code] = 1
+                else:
+                    stats[code] += 1
+                # stats[code] += 1
 
             if count % 10 == 0:
                 print_output(stats, size)
