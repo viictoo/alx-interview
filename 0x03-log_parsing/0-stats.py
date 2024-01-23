@@ -38,7 +38,15 @@ if __name__ == "__main__":
             except (IndexError, ValueError):
                 continue
             size += file_size
-            stats[code] += 1
+            if code not in stats:
+                # If <status_code> is not in status_codes dict,
+                # add it as a new key, count=1
+                stats[code] = 1
+            else:
+                # If <status_code> is already in status_codes dict,
+                # increment its count
+                stats[code] += 1
+            # stats[code] += 1
 
             if count % 10 == 0:
                 print_output(stats, size)
