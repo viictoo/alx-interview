@@ -23,7 +23,7 @@ def validUTF8(data: List) -> bool:
         for b in data:
             b.to_bytes(1, 'big').decode('utf-8')
         return True
-    except UnicodeDecodeError:
+    except Exception:
         return False
 
 if __name__ == "__main__":
