@@ -9,17 +9,22 @@ def validUTF8(data: List) -> bool:
     Returns:
         boolean: True if valid utf8 otherwise false
     """
-    bitSeq = 0
-    for b in data:
-        b = bin(b).replace('0b', '').rjust(8, '0')
-        if bitSeq != 0:
-            bitSeq -= 1
-            if not b.startswith('10'):
-                return False
-        elif b[0] == '1':
-            bitSeq = len(b.split('0')[0]) - 1
-    return True
-
+    # bitSeq = 0
+    # for b in data:
+    #     b = bin(b).replace('0b', '').rjust(8, '0')
+    #     if bitSeq != 0:
+    #         bitSeq -= 1
+    #         if not b.startswith('10'):
+    #             return False
+    #     elif b[0] == '1':
+    #         bitSeq = len(b.split('0')[0]) - 1
+    # return True
+    try:
+        for b in data:
+            b.to_bytes(1, 'big').decode('utf-8')
+        return True
+    except UnicodeDecodeError:
+        return False
 
 if __name__ == "__main__":
     """
