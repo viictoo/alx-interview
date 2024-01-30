@@ -19,12 +19,17 @@ def validUTF8(data: List) -> bool:
     #     elif b[0] == '1':
     #         bitSeq = len(b.split('0')[0]) - 1
     # return True
-    try:
-        for b in data:
-            b.to_bytes(1, 'big').decode('utf-8')
-        return True
-    except Exception:
-        return False
+    if len(data) > 0:
+        try:
+            for b in data:
+                if type(b) is not int:
+                    return False
+                b.to_bytes(1, 'big').decode('utf-8')
+            return True
+        except Exception:
+            return False
+    return False
+
 
 if __name__ == "__main__":
     """
@@ -41,4 +46,8 @@ if __name__ == "__main__":
     print(validUTF8(data))  # True
 
     data = [229, 65, 127, 256]
+    print(validUTF8(data))  # False
+    data = []
+    print(validUTF8(data))  # False
+    data = ['a']
     print(validUTF8(data))  # False
