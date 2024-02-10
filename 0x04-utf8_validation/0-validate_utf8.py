@@ -9,30 +9,13 @@ def validUTF8(data: List) -> bool:
     Returns:
         boolean: True if valid utf8 otherwise false
     """
-    # fails 3 checks
 
-    # bitSeq = 0
-    # for b in data:
-    #     b = bin(b).replace('0b', '').rjust(8, '0')
-    #     if bitSeq != 0:
-    #         bitSeq -= 1
-    #         if not b.startswith('10'):
-    #             return False
-    #     elif b[0] == '1':
-    #         bitSeq = len(b.split('0')[0]) - 1
-    # return True
-
-    # fails 3 checks:
-    # try:
-    #     for b in data:
-    #         if type(b) is not int:
-    #             return False
-    #         b.to_bytes(1, 'big').decode('utf-8')
-    #     return True
-    # except Exception:
-    #     return False
-
-    def check(num):
+    def check(num: int) -> int:
+        """check if valid utf8 using int sized
+            mask to emulate bit repr in memory
+        Args:
+            num (data): test array
+        """
         mask = 1 << (8 - 1)  # 10000000
         i = 0
         while num & mask:  # 11000110 & 100000
