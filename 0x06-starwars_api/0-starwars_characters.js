@@ -3,7 +3,8 @@
 */
 // const request = require('request');
 const util = require('util');
-const request = util.promisify(require('request'));
+const request = require('request');
+// const request = util.promisify(require('request'));
 const id = process.argv[2];
 const apiURL = 'https://swapi-api.hbtn.io/api/films/';
 
