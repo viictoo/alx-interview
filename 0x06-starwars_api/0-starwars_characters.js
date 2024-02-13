@@ -2,9 +2,9 @@
 /* a script that prints all characters of a Star Wars movie:
 */
 // const request = require('request');
-const util = require('util');
-// const request = require('request');
-const request = util.promisify(require('request'));
+// const util = require('util');
+const request = require('request');
+// const request = util.promisify(require('request'));
 const id = process.argv[2];
 const apiURL = 'https://swapi-api.hbtn.io/api/films/';
 
@@ -36,8 +36,8 @@ function fetchXters (urls) {
 request(apiURL + id, (err, res, body) => {
   if (err) return console.error(err);
   const allCharacters = JSON.parse(body).characters;
-  fetchXters(allCharacters);
+  getXters(allCharacters, 0);
   if (!allCharacters) {
-    getXters(allCharacters, 0);
+    fetchXters(allCharacters);
   }
 });
