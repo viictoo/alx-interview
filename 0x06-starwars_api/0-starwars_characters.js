@@ -6,7 +6,7 @@
 const request = require('request');
 // const request = util.promisify(require('request'));
 const id = process.argv[2];
-const apiURL = 'https://swapi-api.alx-tools.com/api/films/';
+const apiURL = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
 // Serial Execution Version
 function getXters (urls, idx) {
