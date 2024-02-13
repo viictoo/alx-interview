@@ -36,6 +36,8 @@ function fetchXters (urls) {
 request(apiURL + id, (err, res, body) => {
   if (err) return console.error(err);
   const allCharacters = JSON.parse(body).characters;
-  getXters(allCharacters, 0);
-  if (!allCharacters) fetchXters(allCharacters);
+  fetchXters(allCharacters);
+  if (!allCharacters) {
+    getXters(allCharacters, 0);
+  }
 });
