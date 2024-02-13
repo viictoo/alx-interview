@@ -8,7 +8,7 @@ const request = require('request');
 const id = process.argv[2];
 const apiURL = 'https://swapi-api.hbtn.io/api/films/';
 
-// Serial Exectution Version
+// Serial Execution Version
 function getXters (urls, idx) {
   request(urls[idx], (err, res, body) => {
     if (err) return console.error(err);
