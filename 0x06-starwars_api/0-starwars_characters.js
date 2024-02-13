@@ -1,10 +1,9 @@
 #!/usr/bin/node
 /* a script that prints all characters of a Star Wars movie:
 */
+const util = require('util');
 // const request = require('request');
-// const util = require('util');
-const request = require('request');
-// const request = util.promisify(require('request'));
+const request = util.promisify(require('request'));
 const id = process.argv[2];
 const apiURL = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
@@ -36,9 +35,9 @@ function fetchXters (urls) {
 request(apiURL, (err, res, body) => {
   if (!err) {
     const allCharacters = JSON.parse(body).characters;
-    getXters(allCharacters, 0);
+    fetchXters(allCharacters);
     if (allCharacters.length < 0) {
-      fetchXters(allCharacters);
+      getXters(allCharacters, 0);
     }
   }
 });
