@@ -6,15 +6,16 @@
 const request = require('request');
 // const request = util.promisify(require('request'));
 const id = process.argv[2];
-const apiURL = 'https://swapi-api.hbtn.io/api/films/';
+const apiURL = 'https://swapi-api.alx-tools.com/api/films/';
 
 // Serial Execution Version
 function getXters (urls, idx) {
   request(urls[idx], (err, res, body) => {
-    if (err) return console.error(err);
-    console.log(JSON.parse(body).name);
-    if (idx < urls.length - 1) {
-      getXters(urls, idx + 1);
+    if (!err) {
+      console.log(JSON.parse(body).name);
+      if (idx < urls.length - 1) {
+        getXters(urls, idx + 1);
+      }
     }
   });
 }
