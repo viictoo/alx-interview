@@ -22,7 +22,6 @@ function getXters (urls, idx) {
 
 // Parallel Exectution Version
 function fetchXters (urls) {
-  // Create an array of promises from the request calls
   const fetchPromises = urls.map((url) => request({ url }));
 
   Promise.all(fetchPromises)
@@ -34,7 +33,7 @@ function fetchXters (urls) {
     });
 }
 
-request(apiURL + id, (err, res, body) => {
+request(apiURL, (err, res, body) => {
   if (err) return console.error(err);
   const allCharacters = JSON.parse(body).characters;
   getXters(allCharacters, 0);
