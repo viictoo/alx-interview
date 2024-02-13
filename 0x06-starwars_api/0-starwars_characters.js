@@ -34,10 +34,11 @@ function fetchXters (urls) {
 }
 
 request(apiURL, (err, res, body) => {
-  if (err) return console.error(err);
-  const allCharacters = JSON.parse(body).characters;
-  getXters(allCharacters, 0);
-  if (!allCharacters) {
-    fetchXters(allCharacters);
+  if (!err) {
+    const allCharacters = JSON.parse(body).characters;
+    getXters(allCharacters, 0);
+    if (allCharacters.length < 0) {
+      fetchXters(allCharacters);
+    }
   }
 });
