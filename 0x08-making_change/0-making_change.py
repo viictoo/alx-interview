@@ -29,11 +29,12 @@ def makeChangeRecursive(coins, total):
 
 def makeChange(deno, V):
     """generatare all possible coins to make total"""
+    if V <= 0:
+        return 0
     n = len(deno)
     deno = sorted(deno)
 
     ans = []
-
     i = n - 1
     while (i >= 0):
 
