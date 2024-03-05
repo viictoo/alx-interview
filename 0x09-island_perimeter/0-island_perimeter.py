@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ island perimeter """
 
+
 def island_perimeter(grid):
     """returns the perimeter of the island described in grid"""
     if not grid:
@@ -19,6 +20,7 @@ def island_perimeter(grid):
                     perimeter -= 2
 
     return perimeter
+
 
 if __name__ == "__main__":
     grid = [
@@ -50,5 +52,3 @@ if __name__ == "__main__":
         [1, 1, 1, 1, 1, 1],
     ]
     print(island_perimeter(grid))
-
-
